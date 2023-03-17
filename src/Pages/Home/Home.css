@@ -6,7 +6,65 @@
 .small-banner{
     width: 49%;
 }
-
-
 /* -----------------------------------------------------------------------
 banner */
+/* .bann img
+{
+    height: 300px;
+    width: 100%;
+} */
+
+.bannimg
+{
+    height: 300px;
+    width: 100%;
+}
+
+.trand
+{
+    margin-top: 50px;
+}
+.toppro
+{
+    margin-top: 35px;
+    border: 1px solid rgba(0, 0, 255, 0.104) ;
+    width: 96%;
+}
+.trncard
+{
+    margin-top: 10px;
+}
+.img_back
+{
+    background-color: rgba(0, 0, 255, 0.104);
+}
+
+/* ---------------------------------------------------------------------
+time_section */
+.time_main
+{
+    margin-top: 50px;
+    border: 1px solid  rgba(0, 0, 255, 0.104) ;
+    background-color:  rgba(0, 255, 255, 0.115);
+}
+.timeomg
+{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* .time_contmain
+{
+    
+    background-color: rgba(0, 255, 255, 0.115);
+} */
+.time_cont{
+    text-align: center;
+    margin: 100px;
+
+}
+.shapsec
+{
+    display: flex;
+    
+}

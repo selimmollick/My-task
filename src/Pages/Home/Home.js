@@ -1,12 +1,12 @@
 // import React from 'react'
-
+import '../Home/Home.css'
 import React, { useState, useEffect } from 'react'
 import imga from '../../Images/main-banner.jpg'
+import imgr from '../../Images/main-banner-r.png'
 import imgb from '../../Images/catbanner-01.jpg'
 import imgc from '../../Images/catbanner-02.jpg'
 import Prodact from '../Prodacts/Prodact'
 import ban1 from '../../Images/ban.webp'
-
 
 
 import Slider from "react-slick";
@@ -15,6 +15,7 @@ import "slick-carousel/slick/slick-theme.css";
 function Home() {
 
     const [products, setProducts] = useState([]);
+    const [time, setTime] = useState(new Date().toLocaleTimeString());
 
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
@@ -22,6 +23,13 @@ function Home() {
             .then(data => setProducts(data))
             .catch(error => console.error(error));
     }, []);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+          setTime(new Date().toLocaleTimeString());
+        }, 1000);
+        return () => clearInterval(intervalId);
+      }, []);
     // --------------------------------------------------------------------
     // banner
 
@@ -83,23 +91,10 @@ function Home() {
 
                             <hr />
 
-                            {/* <Slider {...settings}>
-                                <div>
-                                    <img src="https://via.placeholder.com/1500x500" alt="Banner 1" />
-                                </div>
-                                <div>
-                                    <img src="https://via.placeholder.com/1500x500" alt="Banner 2" />
-                                </div>
-                                <div>
-                                    <img src="https://via.placeholder.com/1500x500" alt="Banner 3" />
-                                </div>
-                            </Slider> */}
-
-
 
                             <div>
                                 <div className='row'>
-                                    {products.map(product => (
+                                    {products.slice(0, 8).map(product => (
 
                                         <div className="col-md-3 mb-4">
                                             <div className="card h-70 text-center p-4" key={product.id}>
@@ -120,29 +115,166 @@ function Home() {
 
                                     ))}
                                 </div>
-
                                 <Slider {...settings}>
+
                                     <div>
-                                        <img src={ban1} alt="Banner 1" />
+                                        <img className='bannimg' src={ban1} alt="Banner 1" />
                                     </div>
                                     <div>
 
-                                        <img src={ban1} alt="Banner 2" />
+                                        <img className='bannimg' src={ban1} alt="Banner 2" />
                                     </div>
                                     <div>
-                                        <img src={ban1} alt="Banner 3" />
+                                        <img className='bannimg' src={ban1} alt="Banner 3" />
                                     </div>
+
                                 </Slider>
+                                {/* ------------------------------------------------------------------------------------------
+                               top_product */}
+
 
                             </div>
+
+                            <div className='row d-flex justify-content-between trand'>
+
+
+
+                                <div className='col-4'>
+                                    <h4>HOT TREND</h4>
+                                    {products.slice(1, 4).map(product => (
+                                        <>
+
+                                            <div className='row toppro'>
+                                                <div className='col-4'>
+                                                    <img
+                                                        src={product.image}
+                                                        className="card-img-top"
+                                                        alt={product.title}
+                                                    />
+                                                </div>
+                                                <div className='col-8 img_back'>
+                                                    <div className="card-body">
+                                                        <p className="card-title mb-0">{product.title.substring(0, 12)}</p>
+                                                        <i class="bi bi-star text-warning"></i>
+                                                        <i class="bi bi-star text-warning"></i>
+                                                        <i class="bi bi-star text-warning"></i>
+                                                        <i class="bi bi-star"></i>
+                                                        <h6 className="card-text lead fw-bold">${product.price}</h6>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </>
+
+                                    ))}
+                                </div>
+                                <div className='col-4'>
+                                    <h4>BEST TREND</h4>
+                                    {products.slice(1, 4).map(product => (
+                                        <>
+
+                                            <div className='row toppro'>
+                                                <div className='col-4 '>
+                                                    <img
+                                                        src={product.image}
+                                                        className="card-img-top"
+                                                        alt={product.title}
+                                                    />
+                                                </div>
+                                                <div className='col-8 img_back'>
+                                                    <div className="card-body trncard">
+                                                        <p className="card-title mb-0">{product.title.substring(0, 12)}</p>
+                                                        <i class="bi bi-star text-warning"></i>
+                                                        <i class="bi bi-star text-warning"></i>
+                                                        <i class="bi bi-star text-warning"></i>
+                                                        <i class="bi bi-star"></i>
+                                                        <h6 className="card-text lead fw-bold">${product.price}</h6>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </>
+
+                                    ))}
+                                </div>
+                                <div className='col-4'>
+                                    <h4>FEATURE</h4>
+                                    {products.slice(1, 4).map(product => (
+                                        <>
+
+                                            <div className='row toppro'>
+                                                <div className='col-4'>
+                                                    <img
+                                                        src={product.image}
+                                                        className="card-img-top"
+                                                        alt={product.title}
+                                                    />
+                                                </div>
+                                                <div className='col-8 img_back'>
+                                                    <div className="card-body mb-4">
+                                                        <p className="card-title mb-0">{product.title.substring(0, 12)}</p>
+                                                        <i class="bi bi-star text-warning"></i>
+                                                        <i class="bi bi-star text-warning "></i>
+                                                        <i class="bi bi-star text-warning"></i>
+                                                        <i class="bi bi-star"></i>
+                                                        <h6 className="card-text lead fw-bold">${product.price}</h6>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </>
+
+                                    ))}
+                                </div>
+
+
+                            </div>
+
+                            {/* --------------------------------------------------------------------------------------
+                            time */}
+                            <div className='row time_main'>
+
+                                <div className='col-5'>
+                                    <img className='timeomg img-fluid' src={imgr} alt="/"/>
+                                </div>
+                                <div className='col-7 time_contmain'>
+                                    <div className='time_cont'>
+                                    <h6>Discount</h6>
+                                    <h4>SUMMER 2023</h4>
+                                    <h4>SALE 50%</h4>
+                                    <h1>{time}</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* -----------------------------------------------------------------------
+                            shopping_process */}
+
+                            <div className='row main_timesec '>
+                                <div className='col-md-2 shapsec'>
+                                <i class="bi bi-car-front-fill"></i>
+                                    <h6>Free Shipping</h6>
+                                </div>
+                                <div className='col-md-2'>
+                                <i class="bi bi-car-front-fill"></i>
+                                    <h6>Free Shipping</h6>
+                                </div>
+                                <div className='col-md-2'>
+                                <i class="bi bi-car-front-fill"></i>
+                                    <h6>Free Shipping</h6>
+                                </div>
+                                <div className='col-md-2'>
+                                <i class="bi bi-car-front-fill"></i>
+                                    <h6>Free Shipping</h6>
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
+
                 </>
             </section>
-            {/* ------------------------------------------------------------------------------------
-            banner */}
-            <br></br>
-
         </>
     )
 }
